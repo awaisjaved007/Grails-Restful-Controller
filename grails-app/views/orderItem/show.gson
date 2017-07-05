@@ -1,0 +1,7 @@
+import com.jfreaks.store.OrderItem
+
+model {
+	OrderItem orderItem
+}
+
+json tmpl.orderItem(orderItem)

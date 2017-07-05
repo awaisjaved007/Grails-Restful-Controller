@@ -1,0 +1,7 @@
+import com.jfreaks.store.Customer
+
+model {
+	Customer customer
+}
+
+json g.render(customer)

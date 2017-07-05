@@ -1,0 +1,14 @@
+import com.jfreaks.store.OrderItem
+
+model {
+	OrderItem orderItem
+}
+
+json g.render(orderItem, [deep: true]){
+	itemPrice orderItem.pricePerItem
+}
+//json {
+//	id orderItem.id
+//	price orderItem.pricePerItem
+//	inventory orderItem.inventory
+//}
