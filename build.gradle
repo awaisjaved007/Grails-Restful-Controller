@@ -13,11 +13,11 @@ buildscript {
 version "0.1"
 group "inventorystore"
 
-apply plugin:"eclipse"
-apply plugin:"idea"
-apply plugin:"war"
-apply plugin:"org.grails.grails-web"
-apply plugin:"org.grails.plugins.views-json"
+apply plugin: "eclipse"
+apply plugin: "idea"
+apply plugin: "war"
+apply plugin: "org.grails.grails-web"
+apply plugin: "org.grails.plugins.views-json"
 
 repositories {
     mavenLocal()
@@ -55,7 +55,10 @@ dependencies {
     compile "org.grails.plugins:views-json-templates"
     compile "org.grails.plugins:spring-security-rest:${springSecurityRestVersion}"
     compile "org.grails.plugins:spring-security-rest-gorm:${springSecurityRestVersion}"
-    console "org.grails:grails-console"
+    compile 'org.grails.plugins:aws-sdk:1.10.74'
+    compile('com.amazonaws:aws-java-sdk-s3:1.11.136') {
+        exclude group: 'com.fasterxml.jackson.core'
+    }
     profile "org.grails.profiles:rest-api"
     runtime "com.h2database:h2"
     testCompile "org.grails:grails-plugin-testing"

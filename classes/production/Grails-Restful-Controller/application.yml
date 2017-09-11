@@ -1,12 +1,8 @@
 ---
 grails:
-#    plugin:
-#        awssdk:
-#            accessKey:
-#            secretKey:
     profile: rest-api
     codegen:
-        defaultPackage: blog
+        defaultPackage: inventorystore
     spring:
         transactionManagement:
             proxies: false
@@ -29,13 +25,6 @@ endpoints:
         enabled: true
 
 ---
-amazon:
-    accessKeyId: AKIAJMLPR4FPM6MK3UTA
-    secretAccessKey: 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
-    bucketName: 'ecommercetoday'
-    bucketUrl: 'http://ecommercetoday.s3-website.ap-south-1.amazonaws.com'
-    prefix: 'img'
-
 grails:
     mime:
         disable:
@@ -90,7 +79,7 @@ environments:
     development:
         dataSource:
             dbCreate: create-drop
-            url: jdbc:h2:./devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
     test:
         dataSource:
             dbCreate: update

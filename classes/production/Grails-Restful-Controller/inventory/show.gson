@@ -1,0 +1,7 @@
+import com.jfreaks.store.Inventory
+
+model {
+	Inventory inventory
+}
+
+json tmpl.inventory(inventory)

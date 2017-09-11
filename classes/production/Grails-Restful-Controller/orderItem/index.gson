@@ -1,0 +1,8 @@
+import com.jfreaks.store.OrderItem
+
+model {
+	Iterable<OrderItem> orderItemList
+}
+
+json tmpl.orderItem(orderItemList ?: [])
+
