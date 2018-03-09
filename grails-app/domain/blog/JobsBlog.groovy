@@ -1,9 +1,6 @@
 package blog
 
-import com.jfreaks.auth.User
-
-
-class Blog {
+class JobsBlog {
     Date dateCreated
     Date lastUpdated
     String headingMain

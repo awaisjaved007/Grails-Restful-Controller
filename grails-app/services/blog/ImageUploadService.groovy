@@ -13,7 +13,6 @@ class ImageUploadService {
 
     def uploadBlogImage(String name, String data) {
         User user = springSecurityService.getCurrentUser()
-       // Merchant merchant = Merchant.findByUser(user)
         String url = amazonStorageService.uploadFile(name, data)
         user.logoUrl = url
         user.save()

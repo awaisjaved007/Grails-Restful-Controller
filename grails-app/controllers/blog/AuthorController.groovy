@@ -21,7 +21,7 @@ SpringSecurityService springSecurityService
         respond query
     }
     def getProfile(){
-        def query = Author.findAllBy
+        //def query = Author.findAllBy
     }
 
 }

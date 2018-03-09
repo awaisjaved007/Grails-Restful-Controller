@@ -4,60 +4,36 @@ import com.jfreaks.auth.User
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 import grails.rest.*
+import org.springframework.http.HttpStatus
 
 @Secured(['ROLE_USER'])
-class BlogController extends RestfulController {
+class BlogController extends RestfulController<Blog> {
     static responseFormats = ['json', 'xml']
     SpringSecurityService springSecurityService
-
+    BlogService blogService
     BlogController() {
         super(Blog)
-        render("hi blogger")
     }
 
-    def postBlogData() {
-        String a = request.JSON.headingMain
-        String b = request.JSON.tagLine
-        String c = request.JSON.blogContent
-        String d = request.JSON.category
-
-        def user = (User) springSecurityService.getCurrentUser()
-        Author author = Author.findByUser(user)
-        new Blog(headingMain: a, tagLine: b, blogContent: c, category: d, author: author).save(failOnError: true, flush: true);
-        //author.save(flush:true);
-
+    def postBlog() {
+        Blog blog = blogService.postJob(request.JSON)
+        if(blog.hasErrors()){
+            respond status: HttpStatus.BAD_REQUEST
+        }else {
+            respond status: HttpStatus.OK
+        }
     }
 
     def getBlogResult() {
         def results = Blog.findAll()
         respond results
     }
-    def getAuthorBlog(){
-    User user = (User) springSecurityService.getCurrentUser()
-    def results = Blog.findAllByAuthor(Author.findAllByUser(user))
-    respond results
+
+    def getAuthorBlog() {
+        User user = (User) springSecurityService.getCurrentUser()
+        def results = Blog.findAllByAuthor(Author.findAllByUser(user))
+        respond results
     }
-//
-//def postBlogData(){
-//    String a = request.JSON.headingMain
-//   String b = request.JSON.tagLine
-//   String c = request.JSON.blogContent
-//  def  d = request.JSON.category
-//    println(a)
-//    Author author =  springSecurityService.getCurrentUser()
-//    println(author.id)
-//   // def blog = new Blog(headingMain: a, tagLine: b, blogContent:c,category:d)
-//   // blog.save(flash:true,failOnError:true)
-//
-//}
-//    def search() {
-//       User user = springSecurityService.getCurrentUser()
-//        println(user)
-//
-////
-////        def query = Blog.findAll()
-////        respond query
-//    }
 
     def searchCategories() {
         def query = Blog.findAllByCategory(params.get('categoryId'))
@@ -70,6 +46,4 @@ class BlogController extends RestfulController {
         respond results
 
     }
-
-
 }

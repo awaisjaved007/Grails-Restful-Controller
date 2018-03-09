@@ -3,11 +3,10 @@ package blog
 import amazonS3.AmazonStorageService
 import grails.plugin.springsecurity.annotation.Secured
 import grails.rest.*
-import grails.converters.*
-import grails.transaction.Transactional
+
 
 import java.awt.Image
-@Transactional
+
 class ImageController extends RestfulController {
     static responseFormats = ['json']
 
@@ -24,8 +23,6 @@ class ImageController extends RestfulController {
         String url = amazonStorageService.uploadFile(request.JSON.fileName , request.JSON.data)
         println(url)
         Image image = (Image)createResource(name:request.JSON.fileName , url:url)
-        image.validate()
-        image.save()
     }
 
     @Secured(['ROLE_USER'])
@@ -40,7 +37,7 @@ class ImageController extends RestfulController {
 
         String url = amazonStorageService.url
         Image image = (Image)createResource(name:request.JSON.fileName , url:url)
-        image.validate()
-        image.save()
+        //image.validate()
+        //image.save()
     }
 }

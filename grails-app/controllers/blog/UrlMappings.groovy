@@ -11,7 +11,7 @@ class UrlMappings {
         patch "/api/$controller/$id(.$format)?"(action:"patch")
 
        // "/api/blogPost"(controller: 'blog', action: 'savePost', method: 'POST')
-        "/api/postBlogData"(controller: 'blog', action: 'postBlogData', method: 'POST')
+        "/api/post-blog"(controller: 'blog', action: 'postBlog', method: 'POST')
         "/api/getBlogData"(controller: 'blog', action: 'getBlogResult', method: 'GET')
         "/api/getAuthorProfile"(controller: 'author', action: 'getAuthorProfile', method: 'GET')
         "/api/authorBlogs"(controller: 'blog', action: 'getAuthorBlog', method: 'GET')
